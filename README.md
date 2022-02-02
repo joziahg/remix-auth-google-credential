@@ -1,4 +1,9 @@
 # Remix Auth Google Credential
+```bash
+$ npm i remix-auth-google-credential google-auth-library
+```
+
+remix-auth-google-credential depends on google-auth-library for verifying the provided credential
 
 ## Supported runtimes
 
@@ -13,7 +18,7 @@ Not sure if google-auth-library supports workers
 This strategy accepts Google credential responses via FormData. This strategy supports Google one-tap html and javascript api. When using html api, set login_uri attribute to the strategy endpoint. When using javascript api, send credentials to straregy endpoint via fetcher.
 
 ### Create the strategy instance
-For each social you want to use, you must initialise it in your `auth.server.ts` file.
+You must initialize the google-credential strategy in your `auth.server.ts` file.
 
 ```ts
 // app/server/auth.server.ts
