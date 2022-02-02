@@ -25,7 +25,7 @@ export let authenticator = new Authenticator<User>(sessionStorage, { sessionErro
 
 authenticator.use(new GoogleStrategy(
   {
-    clientID: "YOUR_CLIENT_ID",
+    clientId: "YOUR_CLIENT_ID",
     credentialId: "credential", // name of form field that stores credential. Default: credential
   },
   async (profile) => {
