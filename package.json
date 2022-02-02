@@ -2,6 +2,10 @@
   "name": "remix-auth-google-credential",
   "version": "0.0.0",
   "main": "./build/index.js",
+  "author": {
+    "name": "Joziah Grimm",
+    "url": "https://github.com/joziahg"
+  },
   "repository": {
     "url": "https://github.com/joziahg/remix-auth-google-credential",
     "type": "git"
