@@ -2,6 +2,10 @@
   "name": "remix-auth-google-credential",
   "version": "0.0.0",
   "main": "./build/index.js",
+  "repository": {
+    "url": "https://github.com/joziahg/remix-auth-google-credential",
+    "type": "git"
+  },
   "types": "./build/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.json",
@@ -15,7 +19,9 @@
     "remix-auth",
     "auth",
     "authentication",
-    "strategy"
+    "strategy",
+    "google-credential",
+    "google"
   ],
   "license": "MIT",
   "files": [
