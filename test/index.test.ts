@@ -14,7 +14,7 @@ describe(MyStrategy, () => {
 
   test("should have the name of the strategy", () => {
     let strategy = new MyStrategy({ something: "You may need" }, verify);
-    expect(strategy.name).toBe("change-me");
+    expect(strategy.name).toBe("google-credential");
   });
 
   test.todo("Write more tests to check everything works as expected");

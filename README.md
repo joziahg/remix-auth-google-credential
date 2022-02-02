@@ -1,48 +1,35 @@
-# Remix Auth - Strategy Template
-
-> A template for creating a new Remix Auth strategy.
-
-If you want to create a new strategy for Remix Auth, you could use this as a template for your repository.
-
-The repo installs the latest version of Remix Auth and do the setup for you to have tests, linting and typechecking.
-
-## How to use it
-
-1. In the `package.json` change `name` to your strategy name, also add a description and ideally an author, repository and homepage keys.
-2. In `src/index.ts` change the `MyStrategy` for the strategy name you want to use.
-3. Implement the strategy flow inside the `authenticate` method. Use `this.success` and `this.failure` to correctly send finish the flow.
-4. In `tests/index.test.ts` change the tests to use your strategy and test it. Inside the tests you have access to `jest-fetch-mock` to mock any fetch you may need to do.
-5. Once you are ready, set the secrets on Github
-   - `NPM_TOKEN`: The token for the npm registry
-   - `GIT_USER_NAME`: The you want the bump workflow to use in the commit.
-   - `GIT_USER_EMAIL`: The email you want the bump workflow to use in the commit.
-
-## Scripts
-
-- `build`: Build the project for production using the TypeScript compiler (strips the types).
-- `typecheck`: Check the project for type errors, this also happens in build but it's useful to do in development.
-- `lint`: Runs ESLint againt the source codebase to ensure it pass the linting rules.
-- `test`: Runs all the test using Jest.
-
-## Documentations
-
-To facilitate creating a documentation for your strategy, you can use the following Markdown
-
-```markdown
-# Strategy Name
-
-<!-- Description -->
+# Remix Auth Google Credential
 
 ## Supported runtimes
 
 | Runtime    | Has Support |
 | ---------- | ----------- |
 | Node.js    | ✅          |
-| Cloudflare | ✅          |
+| Cloudflare | ?          |
 
-<!-- If it doesn't support one runtime, explain here why -->
-
+Not sure if google-auth-library supports workers
 ## How to use
 
-<!-- Explain how to use the strategy, here you should tell what options it expects from the developer when instantiating the strategy -->
+This strategy accepts Google credential responses via FormData. This strategy supports Google one-tap html and javascript api. When using html api, set login_uri attribute to the strategy endpoint. When using javascript api, send credentials to straregy endpoint via fetcher.
+
+### Create the strategy instance
+For each social you want to use, you must initialise it in your `auth.server.ts` file.
+
+```ts
+// app/server/auth.server.ts
+import { GoogleCredentialStrategy } from "remix-auth-google-credential";
+
+// Create an instance of the authenticator, pass a generic <User> type which the
+// strategies will return (this will be stored in the session)
+export let authenticator = new Authenticator<User>(sessionStorage, { sessionErrorKey });
+
+authenticator.use(new GoogleStrategy(
+  {
+    clientID: "YOUR_CLIENT_ID",
+    credentialId: "credential", // name of form field that stores credential. Default: credential
+  },
+  async (profile) => {
+    return findOrCreateUser(profile);
+  }
+));
 ```
